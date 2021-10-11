@@ -17,6 +17,7 @@ const Header: FunctionalComponent = () => {
       <div className="text-3xl font-bold">Hungry</div>
       <div className="">
         <Link href="/register">Register</Link>
+        <Link href="/dashboard">Dashboard</Link>
       </div>
     </div>
   );
