@@ -5,6 +5,7 @@ import logo from '../assets/hungry_black.svg';
 import Input from '../components/forms/input';
 import SubmitBtn from '../components/forms/submit';
 import { Link } from 'preact-router/match';
+import Footer from '../components/forms/footer';
 
 const Landing: FunctionalComponent = () => {
   const [handle, setHandle] = useState('');
@@ -26,11 +27,17 @@ const Landing: FunctionalComponent = () => {
         'Content-Type': 'application/json',
       },
     })
-      .then((res: Response) => {
+      .then(async (res: Response) => {
+        const data = await res.json();
+
         if (!res.ok) {
-          throw new Error('Username or password does not match.');
+          throw new Error(
+            data.message || 'Username or password does not match.'
+          );
         }
-        console.log('login successful');
+
+        // remove error if previously has one
+        setError('');
       })
       .catch((error: Error) => {
         setError(error.message);
@@ -67,9 +74,7 @@ const Landing: FunctionalComponent = () => {
           </p>
         </Link>
 
-        <p class="text-sm text-center text-gray-400 mt-24">
-          Hungry &copy; Brute Kyle Foundation 1999-2030
-        </p>
+        <Footer />
       </div>
     </div>
   );
