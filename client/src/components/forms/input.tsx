@@ -4,20 +4,30 @@ type Props = {
   label: string;
   name: string;
   set: Function;
+  type?: string;
 };
 
 const Input: FunctionalComponent<Props> = (props: Props) => {
-  const { label, name, set } = props;
+  const { label, name, set, type } = props;
 
   return (
     <div>
-      <label class="block" htmlFor={name}>
+      <label class="block text-xl font-semibold mb-3" htmlFor={name}>
         {label}
       </label>
       <input
-        type="text"
+        type={type ?? 'text'}
         name={name}
-        class="border block border-gray-200 border-solid rounded-sm px-2 py-1"
+        class="
+          border block
+          border-gray-200
+          border-solid
+          rounded-sm
+          px-3
+          py-2 mb-5
+          w-full
+          focus:outline-none focus:ring focus:border-blue-300
+        "
         onInput={(e) => set((e.target as HTMLInputElement).value)}
       />
     </div>
