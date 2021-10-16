@@ -1,6 +1,11 @@
 import { FunctionalComponent, h } from 'preact';
 import { useState } from 'preact/hooks';
 import { SERVER_BASE_URL } from '../env';
+import Input from '../components/forms/input';
+import SubmitBtn from '../components/forms/submit';
+import logo from '../assets/hungry_black.svg';
+import { Link } from 'preact-router/match';
+import Footer from '../components/forms/footer';
 
 const Register: FunctionalComponent = () => {
   const [fname, setFname] = useState('');
@@ -10,7 +15,8 @@ const Register: FunctionalComponent = () => {
   const [phone_number, setPhoneNumber] = useState('');
   const [password, setPassword] = useState('');
   const [password_confirmation, setPasswordConfirm] = useState('');
-  const [error, setError] = useState();
+  const [error, setError] = useState('');
+  const [success, setSuccess] = useState('');
 
   const parseBody = () => ({
     fname,
@@ -23,7 +29,6 @@ const Register: FunctionalComponent = () => {
   });
 
   const register = (event: Event) => {
-    console.log(JSON.stringify(parseBody()));
     event.preventDefault();
     fetch(SERVER_BASE_URL + '/register', {
       method: 'post',
@@ -33,66 +38,65 @@ const Register: FunctionalComponent = () => {
         'Content-Type': 'application/json',
       },
     })
-      .then((res: Response) => {
+      .then(async (res: Response) => {
         console.log(res);
+
+        const data = await res.json();
+        console.log(data);
+
+        if (!res.ok) {
+          throw new Error(res.statusText);
+        }
+
+        return data;
       })
-      .catch((err) => {
-        setError(err);
-        console.error(err);
+      .then((jsonRes) => {
+        console.log(jsonRes);
+      })
+      .catch((error: Error) => {
+        setError(error.message);
       });
   };
 
   return (
-    <div>
-      <form onSubmit={register}>
-        <input
-          name="fname"
-          type="text"
-          placeholder="First name"
-          onInput={(e) => setFname((e.target as HTMLInputElement).value)}
-        />
-        <input
-          name="lname"
-          type="text"
-          placeholder="Last name"
-          onInput={(e) => setLname((e.target as HTMLInputElement).value)}
-        />
-        <input
-          name="handle"
-          type="text"
-          placeholder="Username"
-          onInput={(e) => setHandle((e.target as HTMLInputElement).value)}
-        />
-        <input
-          name="email"
-          type="text"
-          placeholder="Email"
-          onInput={(e) => setEmail((e.target as HTMLInputElement).value)}
-        />
-        <input
-          name="phone_number"
-          type="text"
-          placeholder="Phone number"
-          onInput={(e) => setPhoneNumber((e.target as HTMLInputElement).value)}
-        />
-        <input
-          name="password"
-          type="password"
-          id=""
-          placeholder="Password"
-          onInput={(e) => setPassword((e.target as HTMLInputElement).value)}
-        />
-        <input
-          name="password_confirmation"
-          type="password"
-          id=""
-          placeholder="Confirm Password"
-          onInput={(e) =>
-            setPasswordConfirm((e.target as HTMLInputElement).value)
-          }
-        />
-        <button type="submit">Submit</button>
-      </form>
+    <div class="flex justify-center items-center min-h-screen">
+      <div class="flex flex-col w-96">
+        <div class="mx-auto p-6">
+          <img src={logo} alt="logo" />
+        </div>
+        <form onSubmit={register} class="bg-gray-100 flex flex-col p-5 rounded">
+          <div class="flex gap-2">
+            <Input label="First name" name="fname" set={setFname} />
+            <Input label="Last name" name="lname" set={setLname} />
+          </div>
+          <Input label="Username" name="handle" set={setHandle} />
+          <Input label="Email" name="email" set={setEmail} />
+          <Input label="Phone Number" name="phone" set={setPhoneNumber} />
+          <Input
+            label="Password"
+            name="password"
+            set={setPassword}
+            type="password"
+          />
+          <Input
+            label="Confirm password"
+            name="confirm"
+            set={setPasswordConfirm}
+            type="password"
+          />
+
+          {error && <p class="text-red-500">Error Occurred: {error}</p>}
+
+          <SubmitBtn text="Sign up" />
+        </form>
+        <Link href="/">
+          <p class="text-center mt-4 text-gray-400 hover:text-gray-700">
+            Already have an account? Sign in
+          </p>
+        </Link>
+
+        <Footer />
+      </div>
     </div>
   );
 };
