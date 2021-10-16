@@ -1,6 +1,10 @@
 import { FunctionalComponent, h } from 'preact';
 import { useEffect, useState } from 'preact/hooks';
 import { SERVER_BASE_URL } from '../env';
+import logo from '../assets/hungry_black.svg';
+import Input from '../components/forms/input';
+import SubmitBtn from '../components/forms/submit';
+import { Link } from 'preact-router/match';
 
 const Landing: FunctionalComponent = () => {
   const [handle, setHandle] = useState('');
@@ -23,37 +27,50 @@ const Landing: FunctionalComponent = () => {
       },
     })
       .then((res: Response) => {
-        console.log(res);
+        if (!res.ok) {
+          throw new Error('Username or password does not match.');
+        }
+        console.log('login successful');
       })
-      .catch((error) => {
-        setError(error);
-        console.error(error);
+      .catch((error: Error) => {
+        setError(error.message);
       });
   };
 
-  const onError = () => !!error && <p>Error Occurred: {error}</p>;
-
   return (
-    <div className="">
-      <form onSubmit={login} class="bg-gray-100 flex flex-column">
-        <input
-          type="text"
-          name="username"
-          class="border border-gray-200 border-solid rounded-sm px-2 py-1"
-          onInput={(e) => setHandle((e.target as HTMLInputElement).value)}
-        />
+    <div class="flex justify-center items-center h-screen">
+      <div class="flex flex-col w-96">
+        <div class="mx-auto p-6">
+          <img src={logo} alt="logo" />
+        </div>
+        <form onSubmit={login} class="bg-gray-100 flex flex-col p-5 rounded">
+          <Input label="Username" name="username" set={setHandle} />
+          <Input
+            label="Password"
+            name="password"
+            set={setPassword}
+            type="password"
+          />
 
-        <input
-          type="password"
-          name="password"
-          class="border border-gray-200 border-solid rounded-sm px-2 py-1"
-          onInput={(e) => setPassword((e.target as HTMLInputElement).value)}
-        />
+          {error && <p class="text-red-500">Error Occurred: {error}</p>}
 
-        <button type="submit" class="bg-gray-50 px-4 py-2">
-          Login
-        </button>
-      </form>
+          <SubmitBtn text="Login" />
+        </form>
+        <Link href="/register">
+          <p class="text-center mt-4 text-gray-400 hover:text-gray-700">
+            Not a member yet? Join now
+          </p>
+        </Link>
+        <Link href="/">
+          <p class="text-center mt-2 text-gray-400 hover:text-gray-700">
+            Forgot passowrd?
+          </p>
+        </Link>
+
+        <p class="text-sm text-center text-gray-400 mt-24">
+          Hungry &copy; Brute Kyle Foundation 1999-2030
+        </p>
+      </div>
     </div>
   );
 };
