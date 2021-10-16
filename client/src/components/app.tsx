@@ -9,6 +9,7 @@ import Dashboard from '../routes/user/dashboard';
 import DelicacyDetail from '../routes/user/delicacyDetails';
 import Orders from '../routes/user/orders';
 import { useState } from 'preact/hooks';
+import Redirect from './redirect';
 
 const App: FunctionalComponent = () => {
   const [authenticated, setAuthenticated] = useState(false);
@@ -23,7 +24,8 @@ const App: FunctionalComponent = () => {
         </Router>
       ) : (
         <Router>
-          <Route path="/dashboard" component={Dashboard} />
+          <Redirect path="/register" to="/" />
+          <Route path="/" component={Dashboard} />
           <Route path="/profile/" component={Profile} user="me" />
           <Route path="/profile/:user" component={Profile} />
           <Route path="/delicacy/:id" component={DelicacyDetail} />
