@@ -12,7 +12,7 @@ const Input: FunctionalComponent<Props> = (props: Props) => {
 
   return (
     <div>
-      <label class="block text-xl font-semibold mb-3" htmlFor={name}>
+      <label class="block text-lg font-semibold mb-1" htmlFor={name}>
         {label}
       </label>
       <input
@@ -28,6 +28,7 @@ const Input: FunctionalComponent<Props> = (props: Props) => {
           w-full
           focus:outline-none focus:ring focus:border-blue-300
         "
+        autoComplete="false"
         onInput={(e) => set((e.target as HTMLInputElement).value)}
       />
     </div>

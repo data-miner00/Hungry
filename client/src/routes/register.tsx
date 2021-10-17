@@ -16,7 +16,7 @@ const Register: FunctionalComponent = () => {
   const [password, setPassword] = useState('');
   const [password_confirmation, setPasswordConfirm] = useState('');
   const [error, setError] = useState('');
-  const [success, setSuccess] = useState('');
+  const [success, setSuccess] = useState(false);
 
   const parseBody = () => ({
     fname,
@@ -47,11 +47,16 @@ const Register: FunctionalComponent = () => {
         if (!res.ok) {
           throw new Error(res.statusText);
         }
-
+        setSuccess(true);
         return data;
       })
-      .then((jsonRes) => {
-        console.log(jsonRes);
+      .then((body) => {
+        console.log(body);
+
+        // waited redirect to dashboard
+        setTimeout(() => {
+          //
+        }, 3000);
       })
       .catch((error: Error) => {
         setError(error.message);
@@ -86,6 +91,11 @@ const Register: FunctionalComponent = () => {
           />
 
           {error && <p class="text-red-500">Error Occurred: {error}</p>}
+          {success && (
+            <p class="bg-green-100 text-green-500 p-2 text-center">
+              Successfully Registered!
+            </p>
+          )}
 
           <SubmitBtn text="Sign up" />
         </form>
