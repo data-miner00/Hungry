@@ -15,7 +15,7 @@ const App: FunctionalComponent = () => {
   const [authenticated, setAuthenticated] = useState(false);
 
   return (
-    <div id="preact_root">
+    <div id="preact_root" class="bg-gray-50">
       {!authenticated ? (
         <Router>
           <Route path="/" component={Landing} />
