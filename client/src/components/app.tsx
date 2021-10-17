@@ -8,11 +8,12 @@ import Register from '../routes/register';
 import Dashboard from '../routes/user/dashboard';
 import DelicacyDetail from '../routes/user/delicacyDetails';
 import Orders from '../routes/user/orders';
-import { useState } from 'preact/hooks';
 import Redirect from './redirect';
+import { useSelector } from 'react-redux';
 
 const App: FunctionalComponent = () => {
-  const [authenticated, setAuthenticated] = useState(false);
+  //@ts-ignore
+  const authenticated = useSelector((state) => state.auth);
 
   return (
     <div id="preact_root" class="bg-gray-50">
