@@ -1,13 +1,14 @@
 import { FunctionalComponent, h } from 'preact';
 import { useState } from 'preact/hooks';
+import DashboardLayout from '../../components/dashboard';
 
 const Dashboard: FunctionalComponent = () => {
   const [delicacies, setDelicacies] = useState([1, 2, 3, 4]);
 
   return (
-    <div>
+    <DashboardLayout>
       <h1>User dashboard</h1>
-      {delicacies.map((delicacy) => {
+      {delicacies.map((_) => {
         return (
           <div>
             <div>This represents the image </div>
@@ -22,7 +23,7 @@ const Dashboard: FunctionalComponent = () => {
           </div>
         );
       })}
-    </div>
+    </DashboardLayout>
   );
 };
 
