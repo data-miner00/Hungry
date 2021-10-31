@@ -6,11 +6,14 @@ import Input from '../components/forms/input';
 import SubmitBtn from '../components/forms/submit';
 import { Link } from 'preact-router/match';
 import Footer from '../components/forms/footer';
+import { useDispatch } from 'react-redux';
+import { login as reduxLogin } from '../actions';
 
 const Landing: FunctionalComponent = () => {
   const [handle, setHandle] = useState('');
   const [password, setPassword] = useState('');
   const [error, setError] = useState('');
+  const dispatch = useDispatch();
 
   const parseBody = () => ({
     handle,
@@ -20,28 +23,30 @@ const Landing: FunctionalComponent = () => {
   const login = (event: Event) => {
     event.preventDefault();
 
-    fetch(SERVER_BASE_URL + '/login', {
-      method: 'post',
-      body: JSON.stringify(parseBody()),
-      headers: {
-        'Content-Type': 'application/json',
-      },
-    })
-      .then(async (res: Response) => {
-        const data = await res.json();
+    // fetch(SERVER_BASE_URL + '/login', {
+    //   method: 'post',
+    //   body: JSON.stringify(parseBody()),
+    //   headers: {
+    //     'Content-Type': 'application/json',
+    //   },
+    // })
+    //   .then(async (res: Response) => {
+    //     const data = await res.json();
 
-        if (!res.ok) {
-          throw new Error(
-            data.message || 'Username or password does not match.'
-          );
-        }
+    //     if (!res.ok) {
+    //       throw new Error(
+    //         data.message || 'Username or password does not match.'
+    //       );
+    //     }
 
-        // remove error if previously has one
-        setError('');
-      })
-      .catch((error: Error) => {
-        setError(error.message);
-      });
+    //     // remove error if previously has one
+    //     setError('');
+    //   })
+    //   .catch((error: Error) => {
+    //     setError(error.message);
+    //   });
+
+    dispatch(reduxLogin('somerandomstring'));
   };
 
   return (
