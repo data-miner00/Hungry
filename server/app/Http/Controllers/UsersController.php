@@ -17,9 +17,9 @@ class UsersController extends Controller
         $fields = $request->validate([
             'fname' => 'required|string',
             'lname' => 'required|string',
-            'handle' => 'required|string|min:8|unique:users,handle',
-            'email' => 'required|string|unique:users,email',
-            'phone_number' => 'required|string|unique:users,phone_number',
+            'handle' => 'required|string|min:8|unique:users',
+            'email' => 'required|string|unique:users',
+            'phone_number' => 'required|string|unique:users',
             'password' => 'required|string|confirmed'
         ]);
 
