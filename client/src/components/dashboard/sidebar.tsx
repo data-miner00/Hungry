@@ -45,17 +45,19 @@ const Sidebar: FunctionalComponent = () => {
       <div class="px-4 py-2">
         <img src={logo} alt="logo" />
       </div>
-      <div class="w-full bg-gray-600 mt-10">
+      <div class="w-full mt-10">
         {links.map((link: SidebarLink) => (
           <Link
             href={link.href}
             class="flex p-6 text-white items-center justify-center"
           >
-            <div>
-              <img src={link.icon} alt="sample" width="20" class="mr-3" />
-            </div>
-            <div>
-              <span class="font-bold">{link.title}</span>
+            <div class="flex w-32 items-center">
+              <div>
+                <img src={link.icon} alt="sample" width="20" class="mr-3" />
+              </div>
+              <div>
+                <span class="font-bold">{link.title}</span>
+              </div>
             </div>
           </Link>
         ))}
