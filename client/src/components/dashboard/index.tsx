@@ -1,5 +1,6 @@
 import { ComponentChildren, FunctionalComponent, h } from 'preact';
 import Sidebar from './sidebar';
+import AppBar from './appbar';
 
 type Props = {
   children: ComponentChildren;
@@ -8,7 +9,10 @@ type Props = {
 const Dashboard: FunctionalComponent<Props> = ({ children }: Props) => (
   <div class="flex h-screen w-screen">
     <Sidebar />
-    {children}
+    <div class="flex-1">
+      <AppBar />
+      {children}
+    </div>
   </div>
 );
 
