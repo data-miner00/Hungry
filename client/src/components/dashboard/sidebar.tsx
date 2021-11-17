@@ -49,7 +49,7 @@ const Sidebar: FunctionalComponent = () => {
         {links.map((link: SidebarLink) => (
           <Link
             href={link.href}
-            class="flex p-6 text-white items-center justify-center"
+            class="flex p-6 text-white items-center justify-center transition-all duration-200 hover:bg-indigo-500"
           >
             <div class="flex w-32 items-center">
               <div>
