@@ -39,7 +39,7 @@ const Sidebar: FunctionalComponent = () => {
 
   return (
     <div
-      class="w-80 flex flex-col justify-start items-center"
+      class="w-80 flex flex-col justify-start items-center shadow-xl"
       style="background: #4a4e69;"
     >
       <div class="px-4 py-2">
