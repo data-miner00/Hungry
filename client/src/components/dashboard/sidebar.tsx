@@ -2,10 +2,10 @@ import { FunctionalComponent, h } from 'preact';
 import { Link } from 'preact-router/match';
 import logo from '../../assets/hungry_white.svg';
 
-import sample_icon from '../../assets/sample_icon.svg';
-import orders_icon from '../../assets/orders_icon.svg';
-import dashboard_icon from '../../assets/dashboard_icon.svg';
-import explore_icon from '../../assets/explore_icon.svg';
+import sample_icon from '../../assets/icons/sample_icon.svg';
+import orders_icon from '../../assets/icons/orders_icon.svg';
+import dashboard_icon from '../../assets/icons/dashboard_icon.svg';
+import explore_icon from '../../assets/icons/explore_icon.svg';
 
 type SidebarLink = {
   title: string;
