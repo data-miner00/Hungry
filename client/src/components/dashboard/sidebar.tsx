@@ -135,7 +135,13 @@ const Sidebar: FunctionalComponent = () => {
         class="collapse-button nav-item-base"
         onClick={() => setIsCollapsed(!isCollapsed)}
       >
-        <img class="icon" src={collapse_icon} alt="collapse icon" />
+        <img
+          class={`icon transition-transform duration-500 ${
+            isCollapsed ? 'transform rotate-180' : ''
+          }`}
+          src={collapse_icon}
+          alt="collapse icon"
+        />
         <span class="collapse-button--text font-bold inline-block">
           Collapse
         </span>
