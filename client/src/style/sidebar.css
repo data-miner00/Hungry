@@ -1,0 +1,24 @@
+.sidebar {
+  @apply w-60 flex flex-col justify-start items-center shadow-xl;
+  background: #4a4e69;
+}
+
+.logo {
+  @apply px-4 py-2;
+}
+
+.nav-container {
+  @apply w-full mt-10;
+}
+
+.nav-link {
+  @apply flex p-6 text-white items-center justify-center transition-all duration-200 hover:bg-indigo-500;
+}
+
+.nav-link-inner {
+  @apply flex w-32 items-center;
+}
+
+.sidebar.collapse {
+  @apply w-16;
+}

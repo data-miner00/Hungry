@@ -7,6 +7,8 @@ import orders_icon from '../../assets/icons/orders_icon.svg';
 import dashboard_icon from '../../assets/icons/dashboard_icon.svg';
 import explore_icon from '../../assets/icons/explore_icon.svg';
 
+import '../../style/sidebar.css';
+
 type SidebarLink = {
   title: string;
   href: string;
@@ -38,20 +40,14 @@ const Sidebar: FunctionalComponent = () => {
   ];
 
   return (
-    <div
-      class="w-80 flex flex-col justify-start items-center shadow-xl"
-      style="background: #4a4e69;"
-    >
-      <div class="px-4 py-2">
+    <nav class="sidebar">
+      <div class="logo">
         <img src={logo} alt="logo" />
       </div>
-      <div class="w-full mt-10">
+      <div class="nav-container">
         {links.map((link: SidebarLink) => (
-          <Link
-            href={link.href}
-            class="flex p-6 text-white items-center justify-center transition-all duration-200 hover:bg-indigo-500"
-          >
-            <div class="flex w-32 items-center">
+          <Link href={link.href} class="nav-link">
+            <div class="nav-link-inner">
               <div>
                 <img src={link.icon} alt="sample" width="20" class="mr-3" />
               </div>
@@ -62,7 +58,7 @@ const Sidebar: FunctionalComponent = () => {
           </Link>
         ))}
       </div>
-    </div>
+    </nav>
   );
 };
 
