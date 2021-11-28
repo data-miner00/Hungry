@@ -7,11 +7,11 @@ type Props = {
 };
 
 const Dashboard: FunctionalComponent<Props> = ({ children }: Props) => (
-  <div class="flex h-screen w-screen">
+  <div class="flex h-screen w-full">
     <Sidebar />
-    <div class="flex-1">
+    <div class="flex-1 flex flex-col">
       <AppBar />
-      {children}
+      <div class="overflow-auto">{children}</div>
     </div>
   </div>
 );
