@@ -46,7 +46,7 @@ const Sidebar: FunctionalComponent = () => {
       icon: sample_icon,
     },
     {
-      title: 'Food tray',
+      title: 'Tray',
       href: 'tray',
       icon: orders_icon,
     },
@@ -131,7 +131,10 @@ const Sidebar: FunctionalComponent = () => {
         ))}
       </div>
       <div class="seperator"></div>
-      <button class="collapse-button nav-item-base">
+      <button
+        class="collapse-button nav-item-base"
+        onClick={() => setIsCollapsed(!isCollapsed)}
+      >
         <img class="icon" src={collapse_icon} alt="collapse icon" />
         <span class="collapse-button--text font-bold inline-block">
           Collapse

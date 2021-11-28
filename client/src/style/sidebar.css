@@ -7,6 +7,11 @@
     px-4
     text-white;
   background: #4a4e69;
+  transition: all 0.5s ease;
+}
+
+.sidebar img {
+  @apply max-w-none;
 }
 
 .logo {
@@ -30,8 +35,8 @@
 
 .nav-item-base {
   @apply rounded-2xl
-        px-6
-        py-4
+        px-3
+        py-3
         flex
         items-center
         mb-2;
@@ -53,7 +58,8 @@
 .search--input {
   @apply outline-none
     border-none
-    px-2
+    pr-2
+    pl-6
     inline-block
     w-full
     bg-transparent
@@ -68,7 +74,24 @@
   @apply inline-block mr-6;
 }
 
+.sidebar input,
+.sidebar span {
+  transition: opacity 0.6s ease;
+  opacity: 1;
+}
+
+/*
+ * 
+ */
 .sidebar.collapse {
-  @apply w-28
-    px-5;
+  @apply w-20;
+}
+
+.sidebar.collapse .logo {
+  @apply justify-start;
+}
+
+.sidebar.collapse input,
+.sidebar.collapse span {
+  @apply opacity-0 pointer-events-none;
 }
