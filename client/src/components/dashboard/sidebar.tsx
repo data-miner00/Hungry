@@ -19,7 +19,7 @@ type SidebarLink = {
 };
 
 const Sidebar: FunctionalComponent = () => {
-  const [isCollapsed, setIsCollapsed] = useState(false);
+  const [isCollapsed, setIsCollapsed] = useState<boolean>(false);
 
   const sectionOneLinks: Array<SidebarLink> = [
     {
