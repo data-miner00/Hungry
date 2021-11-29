@@ -67,7 +67,7 @@
 }
 
 .collapse-button {
-  @apply mt-auto;
+  @apply mt-auto outline-none;
 }
 
 .icon {
