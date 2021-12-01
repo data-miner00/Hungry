@@ -48,7 +48,7 @@
 }
 
 .search {
-  @apply bg-gray-200;
+  @apply bg-gray-200 cursor-pointer;
 }
 
 .search--icon {

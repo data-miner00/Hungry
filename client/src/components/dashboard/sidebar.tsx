@@ -10,7 +10,7 @@ import search_icon from '../../assets/icons/search_icon.svg';
 import collapse_icon from '../../assets/icons/collapse_icon.svg';
 
 import '../../style/sidebar.css';
-import { useState } from 'preact/hooks';
+import { useState, useRef } from 'preact/hooks';
 
 type SidebarLink = {
   title: string;
@@ -20,6 +20,7 @@ type SidebarLink = {
 
 const Sidebar: FunctionalComponent = () => {
   const [isCollapsed, setIsCollapsed] = useState<boolean>(false);
+  const searchInputEl = useRef<HTMLInputElement>(null);
 
   const sectionOneLinks: Array<SidebarLink> = [
     {
@@ -76,14 +77,26 @@ const Sidebar: FunctionalComponent = () => {
         <img class="logo--img" src={logo} alt="logo" width="45" />
         <span class="logo--text">Hungry</span>
       </div>
-      <div class="search nav-item-base">
+      <div
+        class="search nav-item-base"
+        onClick={() => {
+          if (isCollapsed) {
+            setIsCollapsed(false);
+          }
+          searchInputEl.current?.focus();
+        }}
+      >
         <img
           class="search--icon"
           src={search_icon}
           alt="search icon"
           width="24"
         ></img>
-        <input class="search--input" placeholder="Search..." />
+        <input
+          ref={searchInputEl}
+          class="search--input"
+          placeholder="Search..."
+        />
       </div>
       <div class="seperator"></div>
       <div class="nav-container">
