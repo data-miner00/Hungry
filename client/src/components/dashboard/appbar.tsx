@@ -13,7 +13,7 @@ const AppBar: FunctionalComponent = () => {
       <div class="flex items-center">
         {showBack && (
           <button
-            class="block p-2 rounded-full hover:bg-gray-200"
+            class="block p-3 rounded-full hover:bg-gray-100 transition-colors duration-200"
             title="Go back"
           >
             <img height="20" width="20" src={back_icon} alt="back icon svg" />
