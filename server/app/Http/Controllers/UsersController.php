@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use Illuminate\Http\Response;
 use Illuminate\Support\Facades\Hash;
+use Illuminate\Support\Facades\App;
 
 use App\Models\User;
 
@@ -32,7 +33,7 @@ class UsersController extends Controller
             'password' => bcrypt($fields['password']),
         ]);
 
-        $token = $user->createToken('myhungrytoken')->plainTextToken;
+        $token = $user->createToken(env('APP_KEY', 'randomstring'))->plainTextToken;
 
         $response = [
             'user' => $user,
