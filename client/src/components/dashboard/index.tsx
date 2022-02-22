@@ -11,7 +11,9 @@ const Dashboard: FunctionalComponent<Props> = ({ children }: Props) => (
     <Sidebar />
     <div class="flex-1 flex flex-col">
       <AppBar />
-      <div class="overflow-auto">{children}</div>
+      <div class="overflow-auto w-full ">
+        <div class="w-full md:w-3/4 mx-auto pt-8">{children}</div>
+      </div>
     </div>
   </div>
 );
