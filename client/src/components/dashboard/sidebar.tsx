@@ -2,12 +2,12 @@ import { FunctionalComponent, h } from 'preact';
 import { Link } from 'preact-router/match';
 import logo from '../../assets/icons/logo_only_white.svg';
 
-import sample_icon from '../../assets/icons/sample_icon.svg';
-import orders_icon from '../../assets/icons/orders_icon.svg';
-import dashboard_icon from '../../assets/icons/dashboard_icon.svg';
-import explore_icon from '../../assets/icons/explore_icon.svg';
-import search_icon from '../../assets/icons/search_icon.svg';
-import collapse_icon from '../../assets/icons/collapse_icon.svg';
+import sampleIcon from '../../assets/icons/sample_icon.svg';
+import ordersIcon from '../../assets/icons/orders_icon.svg';
+import dashboardIcon from '../../assets/icons/dashboard_icon.svg';
+import exploreIcon from '../../assets/icons/explore_icon.svg';
+import searchIcon from '../../assets/icons/search_icon.svg';
+import collapseIcon from '../../assets/icons/collapse_icon.svg';
 
 import '../../style/sidebar.css';
 import { useState, useRef } from 'preact/hooks';
@@ -26,12 +26,12 @@ const Sidebar: FunctionalComponent = () => {
     {
       title: 'Dashboard',
       href: '',
-      icon: dashboard_icon,
+      icon: dashboardIcon,
     },
     {
       title: 'Explore',
       href: 'explore',
-      icon: explore_icon,
+      icon: exploreIcon,
     },
   ];
 
@@ -39,17 +39,17 @@ const Sidebar: FunctionalComponent = () => {
     {
       title: 'Orders',
       href: 'orders',
-      icon: sample_icon,
+      icon: sampleIcon,
     },
     {
       title: 'History',
       href: 'history',
-      icon: sample_icon,
+      icon: sampleIcon,
     },
     {
       title: 'Tray',
       href: 'tray',
-      icon: orders_icon,
+      icon: ordersIcon,
     },
   ];
 
@@ -57,17 +57,17 @@ const Sidebar: FunctionalComponent = () => {
     {
       title: 'Wishlist',
       href: 'wishlist',
-      icon: sample_icon,
+      icon: sampleIcon,
     },
     {
       title: 'Favourite',
       href: 'favourite',
-      icon: sample_icon,
+      icon: sampleIcon,
     },
     {
       title: 'Coupons',
       href: 'coupons',
-      icon: sample_icon,
+      icon: sampleIcon,
     },
   ];
 
@@ -88,7 +88,7 @@ const Sidebar: FunctionalComponent = () => {
       >
         <img
           class="search--icon"
-          src={search_icon}
+          src={searchIcon}
           alt="search icon"
           width="24"
         ></img>
@@ -152,7 +152,7 @@ const Sidebar: FunctionalComponent = () => {
           class={`icon transition-transform duration-500 ${
             isCollapsed ? 'transform rotate-180' : ''
           }`}
-          src={collapse_icon}
+          src={collapseIcon}
           alt="collapse icon"
         />
         <span class="collapse-button--text font-bold inline-block">
