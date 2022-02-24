@@ -15,7 +15,7 @@ const Dashboard: FunctionalComponent = () => {
   return (
     <DashboardLayout>
       <p class="text-gray-500 text-xs">Last updated on 24 March 2020, 9.45PM</p>
-      <div class="mt-5 flex flex-wrap gap-4">
+      <div class="mt-5 flex flex-wrap gap-5 pb-5">
         {delicacies.map((delicacy) => (
           <DelicacyCard
             imageSrc={delicacy.imageSrc}
@@ -27,6 +27,7 @@ const Dashboard: FunctionalComponent = () => {
             availStartTime={delicacy.availStartTime}
             waitingTime={delicacy.waitingTime}
             servedBy={delicacy.servedBy}
+            rating={5}
           />
         ))}
       </div>
