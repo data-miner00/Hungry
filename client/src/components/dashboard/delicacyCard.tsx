@@ -1,6 +1,6 @@
 import { FunctionalComponent, h } from 'preact';
-import ethereumIcon from '../../assets/icons/ethereum_smol.svg';
-import moreVerticalIcon from '../../assets/icons/three_dot_vertical.svg';
+import { TrayIcon, EthereumIcon, MoreIconVertical } from '../icons';
+import { Props as IconProps } from '../icons';
 
 type Props = {
   imageSrc: string;
@@ -15,9 +15,49 @@ type Props = {
   rating: number;
 };
 
+type OptionButton = {
+  title: string;
+  onClick: (event: Event) => Event;
+  icon: FunctionalComponent<IconProps>;
+};
+
+type OptionLink = {
+  title: string;
+  href: string;
+};
+
 const DelicacyCard: FunctionalComponent<Props> = (props: Props) => {
+  const optionButtons: Array<OptionButton> = [
+    {
+      title: 'Add to Tray',
+      onClick: (event: Event) => event,
+      icon: TrayIcon,
+    },
+    {
+      title: 'Add to Wishlist',
+      onClick: (event: Event) => event,
+      icon: TrayIcon,
+    },
+    {
+      title: 'Add to Favourites',
+      onClick: (event: Event) => event,
+      icon: TrayIcon,
+    },
+  ];
+
+  const optionLinks: Array<OptionLink> = [
+    {
+      title: 'Review',
+      href: '',
+    },
+    {
+      title: 'Report Abuse',
+      href: '',
+    },
+  ];
+
   return (
-    <div class="w-80 rounded overflow-hidden shadow hover:-translate-y-1 transition-transform duration-150">
+    <div class="w-80 rounded shadow">
       <div class="h-48 bg-white">
         <img
           class="h-full block mx-auto"
@@ -33,11 +73,36 @@ const DelicacyCard: FunctionalComponent<Props> = (props: Props) => {
           </div>
         </div>
         <button class="absolute top-4 right-4 rounded-full hover:bg-gray-100 p-2">
-          <img class="block w-4 h-4" src={moreVerticalIcon} alt="more icon" />
+          <MoreIconVertical class="block w-4 h-4" />
+          <div class="relative">
+            <div class="absolute top-2 -left-2 w-48 bg-white rounded shadow py-2 z-10">
+              {optionButtons.map((optionButton) => (
+                <button
+                  class="py-2 flex items-center w-full hover:bg-gray-100 transition-colors duration-100 focus:bg-gray-100 px-3"
+                  onClick={optionButton.onClick}
+                >
+                  <optionButton.icon class="w-5 h-5" />
+                  <span class="block ml-2">{optionButton.title}</span>
+                </button>
+              ))}
+
+              <hr class="my-1" />
+
+              {optionLinks.map((optionLink) => (
+                <a
+                  class="py-2 block w-full hover:bg-gray-100 transition-colors duration-100 focus:bg-gray-100"
+                  href={optionLink.href}
+                >
+                  {optionLink.title}
+                </a>
+              ))}
+            </div>
+          </div>
         </button>
+
         <p class="font-bold text-lg text-gray-800">{props.name}</p>
         <div class="flex items-center mt-3">
-          <img src={ethereumIcon} class="block w-4 h-4" alt="Ethereum Icon" />
+          <EthereumIcon class="block w-4 h-4" />
           <span class="block ml-2 font-bold text-sm">{props.price}</span>
         </div>
       </div>
