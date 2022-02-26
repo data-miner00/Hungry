@@ -1,6 +1,7 @@
 import { FunctionalComponent, h } from 'preact';
 import { TrayIcon, EthereumIcon, MoreIconVertical } from '../icons';
 import { Props as IconProps } from '../icons';
+import { useState, useRef, useEffect } from 'preact/hooks';
 
 type Props = {
   imageSrc: string;
@@ -27,6 +28,15 @@ type OptionLink = {
 };
 
 const DelicacyCard: FunctionalComponent<Props> = (props: Props) => {
+  const [isOptionsMenuOpen, setIsOptionsMenuOpen] = useState<boolean>(false);
+  const ref = useRef<HTMLDivElement>(null);
+  const toggleOptionMenu = () => setIsOptionsMenuOpen(!isOptionsMenuOpen);
+  const handleClickOutside = (event: Event) => {
+    //@ts-ignore
+    if (ref.current && !ref.current.contains(event.target)) {
+      setIsOptionsMenuOpen(false);
+    }
+  };
   const optionButtons: Array<OptionButton> = [
     {
       title: 'Add to Tray',
@@ -56,6 +66,13 @@ const DelicacyCard: FunctionalComponent<Props> = (props: Props) => {
     },
   ];
 
+  useEffect(() => {
+    document.addEventListener('click', handleClickOutside, true);
+    return () => {
+      document.removeEventListener('click', handleClickOutside, true);
+    };
+  }, []);
+
   return (
     <div class="w-80 rounded shadow">
       <div class="h-48 bg-white">
@@ -72,10 +89,19 @@ const DelicacyCard: FunctionalComponent<Props> = (props: Props) => {
             <span>{props.servedBy}</span>
           </div>
         </div>
-        <button class="absolute top-4 right-4 rounded-full hover:bg-gray-100 p-2">
+        <button
+          class="absolute top-4 right-4 rounded-full hover:bg-gray-100 p-2"
+          onClick={toggleOptionMenu}
+        >
           <MoreIconVertical class="block w-4 h-4" />
           <div class="relative">
-            <div class="absolute top-2 -left-2 w-48 bg-white rounded shadow py-2 z-10">
+            <div
+              ref={ref}
+              class={`absolute top-2 -left-2 w-48 bg-white rounded shadow py-2 z-10 ${
+                isOptionsMenuOpen ? 'block' : 'hidden'
+              }`}
+              onClick={(event: Event) => event.stopPropagation()}
+            >
               {optionButtons.map((optionButton) => (
                 <button
                   class="py-2 flex items-center w-full hover:bg-gray-100 transition-colors duration-100 focus:bg-gray-100 px-3"
