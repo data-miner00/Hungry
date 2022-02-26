@@ -2,12 +2,10 @@ import { FunctionalComponent, h } from 'preact';
 import { Link } from 'preact-router/match';
 import logo from '../../assets/icons/logo_only_white.svg';
 
-import sampleIcon from '../../assets/icons/sample_icon.svg';
-import ordersIcon from '../../assets/icons/orders_icon.svg';
-import dashboardIcon from '../../assets/icons/dashboard_icon.svg';
-import exploreIcon from '../../assets/icons/explore_icon.svg';
 import searchIcon from '../../assets/icons/search_icon.svg';
 import collapseIcon from '../../assets/icons/collapse_icon.svg';
+
+import { Props, TrayIcon } from '../icons';
 
 import '../../style/sidebar.css';
 import { useState, useRef } from 'preact/hooks';
@@ -15,7 +13,7 @@ import { useState, useRef } from 'preact/hooks';
 type SidebarLink = {
   title: string;
   href: string;
-  icon: string;
+  icon: FunctionalComponent<Props>;
 };
 
 const Sidebar: FunctionalComponent = () => {
@@ -26,12 +24,12 @@ const Sidebar: FunctionalComponent = () => {
     {
       title: 'Dashboard',
       href: '',
-      icon: dashboardIcon,
+      icon: TrayIcon,
     },
     {
       title: 'Explore',
       href: 'explore',
-      icon: exploreIcon,
+      icon: TrayIcon,
     },
   ];
 
@@ -39,17 +37,17 @@ const Sidebar: FunctionalComponent = () => {
     {
       title: 'Orders',
       href: 'orders',
-      icon: sampleIcon,
+      icon: TrayIcon,
     },
     {
       title: 'History',
       href: 'history',
-      icon: sampleIcon,
+      icon: TrayIcon,
     },
     {
       title: 'Tray',
       href: 'tray',
-      icon: ordersIcon,
+      icon: TrayIcon,
     },
   ];
 
@@ -57,24 +55,24 @@ const Sidebar: FunctionalComponent = () => {
     {
       title: 'Wishlist',
       href: 'wishlist',
-      icon: sampleIcon,
+      icon: TrayIcon,
     },
     {
       title: 'Favourite',
       href: 'favourite',
-      icon: sampleIcon,
+      icon: TrayIcon,
     },
     {
       title: 'Coupons',
       href: 'coupons',
-      icon: sampleIcon,
+      icon: TrayIcon,
     },
   ];
 
   return (
     <nav class={`sidebar ${isCollapsed ? 'collapse' : ''}`}>
       <div class="logo">
-        <img class="logo--img" src={logo} alt="logo" width="45" />
+        <img src={logo} alt="logo" width="45" />
         <span class="logo--text">Hungry</span>
       </div>
       <div
@@ -106,8 +104,8 @@ const Sidebar: FunctionalComponent = () => {
             class="nav-link nav-item-base"
             activeClassName="active"
           >
-            <div class="flex items-center">
-              <img src={link.icon} alt="sample" width="24" class="icon" />
+            <div class="flex items-center ">
+              <link.icon class="mr-3 w-6 h-6" />
               <span class="font-bold inline-block">{link.title}</span>
             </div>
           </Link>
@@ -122,7 +120,7 @@ const Sidebar: FunctionalComponent = () => {
             activeClassName="active"
           >
             <div class="flex items-center">
-              <img src={link.icon} alt="sample" width="24" class="icon" />
+              <link.icon class="mr-3 w-6 h-6" />
               <span class="font-bold inline-block">{link.title}</span>
             </div>
           </Link>
@@ -137,7 +135,7 @@ const Sidebar: FunctionalComponent = () => {
             activeClassName="active"
           >
             <div class="flex items-center">
-              <img src={link.icon} alt="sample" width="24" class="icon" />
+              <link.icon class="mr-3 w-6 h-6" />
               <span class="font-bold inline-block">{link.title}</span>
             </div>
           </Link>
