@@ -25,6 +25,7 @@ type OptionButton = {
 type OptionLink = {
   title: string;
   href: string;
+  icon: FunctionalComponent<IconProps>;
 };
 
 const DelicacyCard: FunctionalComponent<Props> = (props: Props) => {
@@ -59,10 +60,12 @@ const DelicacyCard: FunctionalComponent<Props> = (props: Props) => {
     {
       title: 'Review',
       href: '',
+      icon: TrayIcon,
     },
     {
       title: 'Report Abuse',
       href: '',
+      icon: TrayIcon,
     },
   ];
 
@@ -116,10 +119,11 @@ const DelicacyCard: FunctionalComponent<Props> = (props: Props) => {
 
               {optionLinks.map((optionLink) => (
                 <a
-                  class="py-2 block w-full hover:bg-gray-100 transition-colors duration-100 focus:bg-gray-100"
+                  class="py-2 flex items-center w-full hover:bg-gray-100 transition-colors duration-100 focus:bg-gray-100 px-3"
                   href={optionLink.href}
                 >
-                  {optionLink.title}
+                  <optionLink.icon class="w-5 h-5" />
+                  <span className="block ml-2">{optionLink.title}</span>
                 </a>
               ))}
             </div>
