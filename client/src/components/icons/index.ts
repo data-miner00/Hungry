@@ -13,3 +13,5 @@ export { default as MailIcon } from './mailIcon';
 export { default as MoreIconVertical } from './moreIconVertical';
 export { default as SearchIcon } from './searchIcon';
 export { default as TrayIcon } from './trayIcon';
+export { default as Grid2by2 } from './grid2by2';
+export { default as Grid3by3 } from './grid3by3';
