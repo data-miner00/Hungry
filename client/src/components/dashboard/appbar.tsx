@@ -1,9 +1,6 @@
 import { FunctionalComponent, h } from 'preact';
 import { useState } from 'preact/hooks';
-import back_icon from '../../assets/icons/back_icon.svg';
-import bell_icon from '../../assets/icons/bell_icon.svg';
-import mail_icon from '../../assets/icons/mail_icon.svg';
-import globe_icon from '../../assets/icons/globe_icon.svg';
+import { BackIcon, BellIcon, MailIcon, GlobeIcon } from '../icons';
 
 const AppBar: FunctionalComponent = () => {
   const [showBack, setShowBack] = useState<boolean>(true);
@@ -16,7 +13,7 @@ const AppBar: FunctionalComponent = () => {
             class="block p-3 rounded-full hover:bg-gray-100 transition-colors duration-200"
             title="Go back"
           >
-            <img height="20" width="20" src={back_icon} alt="back icon svg" />
+            <BackIcon class="w-5 h-5" />
           </button>
         )}
         <div>
@@ -25,34 +22,16 @@ const AppBar: FunctionalComponent = () => {
       </div>
       <div class="flex items-center pr-5">
         <a href="" class="block">
-          <img
-            src={bell_icon}
-            alt="bell icon"
-            title="notification"
-            height="24"
-            width="24"
-          />
+          <BellIcon class="w-6 h-6" />
         </a>
         <a href="" class="block ml-7">
-          <img
-            src={mail_icon}
-            alt="mail icon"
-            title="mailbox"
-            height="24"
-            width="24"
-          />
+          <MailIcon class="w-6 h-6" />
         </a>
         <button
           class="flex rounded-full bg-gray-100 items-center px-3 py-2 ml-7"
           title="language"
         >
-          <img
-            class="block"
-            src={globe_icon}
-            alt="globe icon"
-            height="24"
-            width="24"
-          />
+          <GlobeIcon class="w-6 h-6" />
           <span class="block ml-3">English</span>
         </button>
         <button class="flex items-center ml-7">
