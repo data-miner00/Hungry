@@ -1,5 +1,8 @@
 import { FunctionalComponent, h } from 'preact';
 import DashboardLayout from '../../components/dashboard';
+import { setTitle } from '../../actions';
+import { useEffect } from 'preact/hooks';
+import { useDispatch } from 'react-redux';
 
 type Props = {
   id: string;
@@ -7,6 +10,11 @@ type Props = {
 
 const DelicacyDetail: FunctionalComponent<Props> = (props: Props) => {
   const { id } = props;
+  const dispatch = useDispatch();
+
+  useEffect(() => {
+    dispatch(setTitle('Hello'));
+  }, []);
 
   return (
     <DashboardLayout>

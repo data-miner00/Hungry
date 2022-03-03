@@ -1,9 +1,12 @@
 import { FunctionalComponent, h } from 'preact';
 import { useState } from 'preact/hooks';
 import { BackIcon, BellIcon, MailIcon, GlobeIcon } from '../icons';
+import { useSelector } from 'react-redux';
 
 const AppBar: FunctionalComponent = () => {
   const [showBack, setShowBack] = useState<boolean>(true);
+  //@ts-ignore
+  const title = useSelector((state) => state.title);
 
   return (
     <div class="h-20 bg-white border-b border-gray-50 border-solid flex justify-between items-center shadow-sm px-8">
@@ -17,7 +20,7 @@ const AppBar: FunctionalComponent = () => {
           </button>
         )}
         <div>
-          <span class="ml-5 text-2xl font-semibold">Dashboard</span>
+          <span class="ml-5 text-2xl font-semibold">{title}</span>
         </div>
       </div>
       <div class="flex items-center pr-5">
