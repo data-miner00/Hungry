@@ -1,14 +1,15 @@
 import { FunctionalComponent, h } from 'preact';
+import DashboardLayout from '../../components/dashboard';
 
-interface Props {
+type Props = {
   id: string;
-}
+};
 
 const DelicacyDetail: FunctionalComponent<Props> = (props: Props) => {
   const { id } = props;
 
   return (
-    <div>
+    <DashboardLayout>
       <div>{id}</div>
       <div>This represents the image </div>
       <div>Name</div>
@@ -20,7 +21,7 @@ const DelicacyDetail: FunctionalComponent<Props> = (props: Props) => {
       <div>Waiting time</div>
       <div>Order now</div>
       <input type="number" name="quantity" id="" />
-    </div>
+    </DashboardLayout>
   );
 };
 
