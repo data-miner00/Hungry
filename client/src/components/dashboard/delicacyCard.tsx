@@ -2,8 +2,10 @@ import { FunctionalComponent, h } from 'preact';
 import { TrayIcon, EthereumIcon, MoreIconVertical } from '../icons';
 import { Props as IconProps } from '../icons';
 import { useState, useRef, useEffect } from 'preact/hooks';
+import { Link } from 'preact-router/match';
 
 type Props = {
+  id: string;
   imageSrc: string;
   name: string;
   type: string;
@@ -32,6 +34,7 @@ const DelicacyCard: FunctionalComponent<Props> = (props: Props) => {
   const [isOptionsMenuOpen, setIsOptionsMenuOpen] = useState<boolean>(false);
   const ref = useRef<HTMLDivElement>(null);
   const toggleOptionMenu = () => setIsOptionsMenuOpen(!isOptionsMenuOpen);
+
   const handleClickOutside = (event: Event) => {
     //@ts-ignore
     if (ref.current && !ref.current.contains(event.target)) {
@@ -78,13 +81,15 @@ const DelicacyCard: FunctionalComponent<Props> = (props: Props) => {
 
   return (
     <div class="w-80 rounded shadow">
-      <div class="h-48 bg-white">
-        <img
-          class="h-full block mx-auto"
-          src={props.imageSrc}
-          alt={props.name}
-        />
-      </div>
+      <Link href={`/delicacy/${props.id}`}>
+        <div class="h-48 bg-white">
+          <img
+            class="h-full block mx-auto"
+            src={props.imageSrc}
+            alt={props.name}
+          />
+        </div>
+      </Link>
       <div class="bg-gray-50 px-4 py-3 relative">
         <div class="flex items-center">
           <div class=" w-3 h-3 bg-gray-300 rounded-full overflow-hidden"></div>
