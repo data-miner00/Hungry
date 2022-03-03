@@ -27,17 +27,18 @@ const Dashboard: FunctionalComponent = () => {
           Sorting
         </div>
         <div class="rounded border border-gray-200 flex">
-          <button class="block p-2 border-r border-gray-200 border-solid hover:bg-gray-100">
-            <Grid2by2 class="w-7 h-7 text-gray-700" />
+          <button class="block py-2 px-3 border-r border-gray-200 border-solid hover:bg-gray-100">
+            <Grid2by2 class="w-5 h-5 text-gray-500" />
           </button>
-          <button class="block p-2 hover:bg-gray-100">
-            <Grid3by3 class="w-7 h-7 text-gray-700" />
+          <button class="block py-2 px-3 hover:bg-gray-100">
+            <Grid3by3 class="w-5 h-5 text-gray-500" />
           </button>
         </div>
       </div>
       <div class="mt-5 flex flex-wrap gap-5 pb-5">
         {delicacies.map((delicacy) => (
           <DelicacyCard
+            id={delicacy.id}
             imageSrc={delicacy.imageSrc}
             name={delicacy.name}
             type={delicacy.type}
