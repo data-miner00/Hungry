@@ -15,6 +15,7 @@ const AppBar: FunctionalComponent = () => {
           <button
             class="block p-3 rounded-full hover:bg-gray-100 transition-colors duration-200"
             title="Go back"
+            onClick={() => history.go(-1)}
           >
             <BackIcon class="w-5 h-5" />
           </button>
