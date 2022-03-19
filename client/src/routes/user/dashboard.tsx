@@ -17,9 +17,10 @@ const Dashboard: FunctionalComponent = () => {
     <DashboardLayout>
       <p class="text-gray-500 text-xs">Last updated on 24 March 2020, 9.45PM</p>
       <div class="flex gap-2 mt-2">
-        <div class="rounded border border-gray-200 px-3 py-2 flex-grow">
-          Search
-        </div>
+        <input
+          class="rounded border border-gray-200 px-3 py-2 flex-grow"
+          placeholder="Search"
+        />
         <div class="rounded border border-gray-200 px-3 py-2 basis-72">
           Category
         </div>
